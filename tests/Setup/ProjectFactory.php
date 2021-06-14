@@ -28,15 +28,15 @@ class ProjectFactory
 
    public function create()
    {
-  $project = factory(Project::class)->create([
-     'owner_id' =>  $this->user ?? factory(User::class)
-      ]);
+        $project = factory(Project::class)->create([
+            'owner_id' =>  $this->user ?? factory(User::class)
+            ]);
 
-        factory(Task::class,$this->taskCount)->create([
-          'project_id' => $project->id
-      ]);
+                factory(Task::class,$this->taskCount)->create([
+                'project_id' => $project->id
+            ]);
 
-      return $project;
+            return $project;
    }
 }
 

@@ -19,28 +19,28 @@ class UserTest extends TestCase
     {
        $user = factory('App\User')->create();
 
-    $this->assertInstanceOf(Collection::class, $user->projects);
+       $this->assertInstanceOf(Collection::class, $user->projects);
     }
 
     /** @test */
     function a_user_has_accessible_projects()
     {
-         $Dami =  $this->signIn();
+        $Dami =  $this->signIn();
 
         ProjectFactory::ownedBy($Dami)->create();
 
-         $this->assertCount(1, $Dami->accessibleProjects());
+        $this->assertCount(1, $Dami->accessibleProjects());
 
-          $Sade = factory(User::class)->create();
-           $nick = factory(User::class)->create();
+        $Sade = factory(User::class)->create();
+        $nick = factory(User::class)->create();
 
-            $project = tap(ProjectFactory::ownedBy($Sade)->create())->invite($nick);
+        $project = tap(ProjectFactory::ownedBy($Sade)->create())->invite($nick);
 
-           $this->assertCount(1, $Dami->accessibleProjects());
+        $this->assertCount(1, $Dami->accessibleProjects());
 
-           $project->invite($Dami);
+        $project->invite($Dami);
 
-             $this->assertCount(2, $Dami->accessibleProjects());
+        $this->assertCount(2, $Dami->accessibleProjects());
 
     }
 }

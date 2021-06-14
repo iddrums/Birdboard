@@ -56,7 +56,7 @@ class InvitationsTest extends TestCase
       {
           $project = ProjectFactory::create();
 
-        $this->actingAs($project->owner)
+          $this->actingAs($project->owner)
            ->post($project->path() . '/invitations',[
              'email' => 'notauser@example.com'
             ])
